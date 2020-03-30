@@ -1,5 +1,5 @@
 <div class="card mb-3">
-    <img src="https://lh3.googleusercontent.com/proxy/WSz1PTthlRxk2Si4RJifk4KZt-3zPMjHIbgbfeyVd04s3K7w_Cg4jGGQHBDKRfL4VMVR5BOLavIcz1kHNJrASzWt29_5OGIeZZUoRFArVSeNMdgFeDIlu7BMcFp9ehgTxPYFvyQmBXKZfdeGzm8_8pwEV7uaJtG8BO23BX2e8W2H0DtOg0gZ2Lxe" class="card-img-top" alt="...">
+    <img src="https://p4.wallpaperbetter.com/wallpaper/255/161/299/blue-futuristic-typography-technology-evolution-browsers-education-infographics-facts-rebecca-black-art-minimalistic-hd-art-wallpaper-cbc69cddc3f1af29b5f49b49fd3c4c20.jpg" class="card-img-top">
     <div class="card-body">
       <h5 class="card-title">List Of All Students</h5>
       <p class="card-text">Here you can find the information of all the students.</p>
@@ -27,7 +27,11 @@
                 <td>
                     <a href="{{ url('/show/'.$student->id)}}" class="btn btn-sm btn-info">Show</a>
                     <a href="{{ url('/edit/'.$student->id)}}" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="{{ url('/delete/'.$student->id)}}" class="btn btn-sm btn-danger">Delete</a>
+                    {{-- <a href="{{ url('/delete/'.$student->id)}}" class="btn btn-sm btn-danger">Delete</a> --}}
+                    {!!Form::open(['action'=>['StudentController@destroy', $student->id], 'method' => 'POST', 'class' => 'pull-right']) !!}
+                        {{Form::hidden('_method','POST')}}
+                        {{Form::submit('Delete',['class' => 'btn btn-danger'])}}
+                    {!!Form::close() !!}  
                 </td>
             </tr>
             @endforeach

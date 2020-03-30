@@ -23,7 +23,7 @@
         <div class="container-fluid mt-2">
             <div class="container-fluid mt-2">
                 <div class="row justify-content-center">
-                    <section class="col-md-7">
+                    <section class="col-md-8">
                         @include('studentslist')
                     </section>
                 </div>
@@ -38,10 +38,10 @@
                 </section>
                 <section class="col-md-5">
                     <div class="card mb-3">
-                        <img src="https://img.etimg.com/thumb/msid-73693329,width-643,imgsize-400655,resizemode-4/the-top-priorities-remain-experiential-learning-skill-training-integrated-in-school-mainstream-university-for-vocational-education-and-a-robust-new-national-education-policy-.jpg" class="card-img-top" alt="...">
+                        <img src="https://lh3.googleusercontent.com/proxy/rjl0u1nUjdqILoGxTecOu0I8VEHimlzLJaACVO0vRvekKM7Bwz_r4JZUNhbJK0Zb4Wg1TYVi93u_0NVS_W11h2XUi1VHr9PbQMBMEQOTb9qrectxq5g" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">Enter the information of new student</h5>
-                            <form action="{{ url('/store')}}" method="post">
+                            <form action="{{ url('/store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="cne">CNE</label>
@@ -63,6 +63,7 @@
                                     <label for="speciality">Speciality</label>
                                     <input name="speciality" id="speciality" type="text" class="form-control" placeholder="Enter speciality">
                                 </div>
+                                <input type="file" class="btn btn-default" name="cover_image" id="cover_image">
                                 <input type="submit" class="btn btn-info" value="Save">
                                 <input type="submit" class="btn btn-warning" value="Reset">
                             </form>
@@ -74,13 +75,14 @@
 
     @elseif($layout == 'show')
         <div class="container-fluid mt-2">
-            <div class="row">
-                <section class="col-md-7">
-                    @include('studentslist')
-                </section>
-                <section class="col-md-5"></section>
+            <div class="container-fluid mt-2">
+                <div class="row justify-content-center">
+                    <section class="col-md-8">
+                        @include('show')
+                    </section>
+                </div>
             </div>
-        </div>  
+        </div> 
 
     @elseif($layout == 'edit')
         <div class="container-fluid mt-2">
@@ -90,7 +92,7 @@
                 </section>
                 <section class="col-md-5">
                     <div class="card mb-3">
-                        <img src="https://img.etimg.com/thumb/msid-73693329,width-643,imgsize-400655,resizemode-4/the-top-priorities-remain-experiential-learning-skill-training-integrated-in-school-mainstream-university-for-vocational-education-and-a-robust-new-national-education-policy-.jpg" class="card-img-top" alt="...">
+                        <img src="/storage/cover_images/{{$student->cover_image}}" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">Update the information of the student</h5>
                           <form action="{{ url('/update/'.$student->id)}}" method="post">
